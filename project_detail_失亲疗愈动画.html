@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时光褶皱里的暖——失亲疗愈动画</title>
+    <style>
+        :root {
+            --text-color: #333333;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Source Han Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #FFFFFF;
+            min-height: 1024px; /* Based on frame height */
+            width: 1440px; /* Based on frame width */
+            margin: 0 auto; /* Center the content area */
+            position: relative; /* For positioning text elements */
+        }
+
+        .project-title {
+            position: absolute;
+            left: 193px;
+            top: 60px;
+            font-size: 55px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .project-description {
+            position: absolute;
+            left: 178px;
+            top: 140px;
+            width: 1084px;
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .portfolio-link {
+            position: absolute;
+            left: 12px;
+            top: 14px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #3E2723; /* Color from mastergo_design1.html */
+            text-decoration: none;
+        }
+        
+        /* Basic responsiveness - adjust as needed */
+        @media (max-width: 1440px) {
+            body {
+                width: 100%;
+                padding: 0 20px; /* Add some padding on smaller screens */
+                box-sizing: border-box;
+            }
+
+            .project-title,
+            .project-description,
+            .portfolio-link {
+                position: static; /* Remove absolute positioning */
+                margin-bottom: 20px; /* Add spacing */
+                width: auto; /* Auto width */
+            }
+
+            .project-title {
+                 margin-top: 20px; /* Add space at the top */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="portfolio-link" style="position: absolute; left: 57px; top: 14px; color: #333333;">作品集——视听作品</a>
+
+    <div class="project-title" style="position: absolute; left: 273px; top: 60px;">
+        时光褶皱里的暖——失亲疗愈动画
+    </div>
+
+    <div class="project-description">
+        本动画聚焦失去亲人后的情感治愈，通过简洁的场景与富有感染力的视觉、听觉元素，构建从悲伤到释怀的情感叙事，旨在给予观众温暖与力量。​在画面设计上，采用 "灰暗 — 微光 — 明亮" 的色彩递进逻辑。开篇以深灰主色调、细碎灰线勾勒压抑房间，配合主角手握相框的动作，直观呈现失去亲人后的痛苦与孤独；随着情节推进，窗台枯萎植物上坠落的水珠拖曳微光、半透明爱心，以及新芽生长时环绕的闪烁光点，将抽象的治愈感转化为具象的视觉符号，直至阳光洒满房间、彩色光点汇聚，以明亮暖色调象征走出阴霾、重获希望。文案层层递进，精准呼应画面情绪，引发观众情感共鸣。
+    </div>
+
+    <a href="mastergo_design4.html" style="position: relative; left: 312px; top: 438px;">
+    <video controls width="800" height="450">
+        <source src="images/videos/亲情疗愈动画.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    </a>
+
+    <div style="position: absolute; left: 308px; top: 908px; font-size: 26px; font-family: 'Source Han Sans', sans-serif; font-weight: bold; color: #333333;">
+        创作时间：2025年5月
+    </div>
+
+</body>
+</html> 

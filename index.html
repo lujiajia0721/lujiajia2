@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>芦佳佳 - 视觉叙事者</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff8c42;
+            --secondary-color: #ff6b6b;
+            --text-color: #333;
+            --spacing-unit: 15px;
+            --border-radius: 12px;
+            --transition-duration: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* 导航栏样式 */
+        .menu {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .menu::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: white;
+            margin: 0 20px;
+            font-size: 16px;
+            padding: 8px 20px;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            transition: all var(--transition-duration) ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu a:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Styles for the site name in the menu */
+        .site-name {
+            color: white;
+            font-size: 30px;
+            font-weight: bold; /* Optional: make the name stand out */
+            margin-right: 40px; /* Add some space between the name and links */
+            position: relative; /* Needed for absolute positioning of the tooltip */
+            z-index: 1;
+            transition: all var(--transition-duration) ease; /* Add transition for smooth effect */
+        }
+
+        .site-name:hover {
+            font-size: 32px; /* Slightly larger font size */
+        }
+
+        /* Styles for the custom tooltip */
+        .custom-tooltip {
+            position: absolute;
+            top: 100%; /* Position below the text */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            display: none; /* Hidden by default */
+            color: white; /* White text */
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 18px; /* Larger text */
+            white-space: nowrap; /* Prevent text wrapping */
+            z-index: 2; /* Ensure it's above other elements */
+            margin-top: 5px; /* Space between text and tooltip */
+            transition: opacity var(--transition-duration) ease; /* Add transition for fade */
+            opacity: 0; /* Start invisible for fade */
+        }
+
+        .site-name:hover .custom-tooltip {
+            display: block; /* Show on hover */
+            opacity: 1; /* Fade in */
+        }
+
+        /* 头部图片区域 */
+        .header-image {
+            width: 100%;
+            height: 600px;
+            background: url('https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/image_generation/eccdf8c573aadd06e328d8851ab0c00f_1741676810548865596.jpeg~tplv-a9rns2rl98-image.jpeg?rk3s=25bff839&x-expires=1773212810&x-signature=2IFyOmdqAXYpcj9n%2F8KfWze%2BW6c%3D') center/cover;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.3), rgba(255, 107, 107, 0.3));
+        }
+
+        .avatar-wrapper {
+            position: absolute;
+            top: calc(50% - 280px); /* Keep vertical position */
+            left: 710px; /* Move right by 400px */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(255,140,66,0.18);
+            background: rgba(255,255,255,0.7);
+            z-index: 10;
+        }
+
+        .avatar-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* border-radius: 50%; */
+            /* border: 12px solid var(--primary-color); */
+            border: 12px solid transparent; /* Fallback for browsers that do not support border-image */
+            border-image: linear-gradient(to bottom, var(--primary-color), #ffae70) 1;
+            transition: transform var(--transition-duration) ease; /* Add transition for smooth scaling */
+        }
+
+        .avatar-img {
+            width: 240px;
+            height: 240px;
+            /* border-radius: 32px; */
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            transition: transform var(--transition-duration) ease; /* Add transition for smooth scaling */
+        }
+
+        .avatar-wrapper:hover .avatar-frame,
+        .avatar-wrapper:hover .avatar-img {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .banner-text {
+            position: absolute;
+            top: calc(50% + 141px); /* Adjust position below the avatar */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 36px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
+        }
+
+        .banner-text:hover {
+            font-size: 38px; /* Slightly larger font size */
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Orange to light orange gradient */
+            -webkit-background-clip: text; /* Clip the background to the text */
+            background-clip: text; /* Standard property */
+            -webkit-text-fill-color: transparent; /* Make the text color transparent */
+            color: transparent; /* Fallback for browsers that don't support -webkit-text-fill-color */
+        }
+
+        .contact-prompt {
+            position: absolute;
+            top: calc(50% + 201px); /* Adjust position below the banner text */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 36px;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
+        }
+
+        .contact-prompt:hover {
+            font-size: 38px; /* Slightly larger font size */
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Orange to light orange gradient */
+            -webkit-background-clip: text; /* Clip the background to the text */
+            background-clip: text; /* Standard property */
+            -webkit-text-fill-color: transparent; /* Make the text color transparent */
+            color: transparent; /* Fallback for browsers that don't support -webkit-text-fill-color */
+        }
+
+        .email-address {
+            position: absolute;
+            top: calc(50% + 253px); /* Position below the contact prompt */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 30px; /* Adjust font size as needed */
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
+        }
+
+        .email-address:hover {
+            font-size: 32px; /* Slightly larger font size */
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Orange to light orange gradient */
+            -webkit-background-clip: text; /* Clip the background to the text */
+            background-clip: text; /* Standard property */
+            -webkit-text-fill-color: transparent; /* Make the text color transparent */
+            color: transparent; /* Fallback for browsers that don't support -webkit-text-fill-color */
+        }
+
+        .wechat-id {
+            position: absolute;
+            top: calc(50% + 306px); /* Position below the email address */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 30px; /* Adjust font size as needed */
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
+        }
+
+        .wechat-id:hover {
+            font-size: 32px; /* Slightly larger font size */
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Orange to light orange gradient */
+            -webkit-background-clip: text; /* Clip the background to the text */
+            background-clip: text; /* Standard property */
+            -webkit-text-fill-color: transparent; /* Make the text color transparent */
+            color: transparent; /* Fallback for browsers that don't support -webkit-text-fill-color */
+        }
+
+        /* Add styles for the new greeting text */
+        .greeting-text {
+            position: absolute;
+            top: calc(50% + 86px); /* Position above the banner text */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 30px; /* Adjust font size as needed */
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
+        }
+
+        .greeting-text:hover {
+            font-size: 32px; /* Slightly larger font size */
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Orange to light orange gradient */
+            -webkit-background-clip: text; /* Clip the background to the text */
+            background-clip: text; /* Standard property */
+            -webkit-text-fill-color: transparent; /* Make the text color transparent */
+            color: transparent; /* Fallback for browsers that don't support -webkit-text-fill-color */
+        }
+
+        /* 作品展示区域 */
+        .portfolio-section {
+            padding: var(--spacing-unit);
+            text-align: center;
+            margin-top: 40px; /* Add some space below the header */
+        }
+
+        .portfolio-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .video-container {
+            position: relative;
+            display: inline-block; /* Allows centering and wraps content */
+            margin: 20px;
+            overflow: hidden; /* Hide parts of absolutely positioned children outside */
+        }
+
+        .video-container video {
+            display: block; /* Remove extra space below video */
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles for the hover effect elements */
+        .hover-rectangle {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px; /* Height of the rectangle */
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            opacity: 0;
+            transition: opacity var(--transition-duration) ease;
+            pointer-events: none; /* Allows clicking through to the video */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hover-text {
+            position: absolute;
+            bottom: 20px; /* Position above the bottom of the rectangle */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity var(--transition-duration) ease;
+            pointer-events: none; /* Allows clicking through to the video */
+            z-index: 1; /* Ensure text is above the rectangle */
+        }
+
+        .video-container:hover .hover-rectangle,
+        .video-container:hover .hover-text {
+            opacity: 1;
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-unit);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .category-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            background: white;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all var(--transition-duration) ease;
+        }
+
+        .category-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--spacing-unit) * 2);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition-duration) ease;
+            position: relative; /* Needed for absolute positioning of the overlay */
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* CSS for the portfolio item overlay */
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Adjust height as needed */
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Orange gradient background */
+            color: white; /* Text color, will be overridden by overlay-text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            color: #3E2723;
+            font-size: 18px; /* Adjust font size as needed */
+            font-weight: bold; /* Optional */
+        }
+
+        /* CSS for the mouse trail effect */
+        .mouse-tail {
+            position: absolute;
+            width: 8px; /* Adjust size */
+            height: 8px; /* Adjust size */
+            background-color: rgba(255, 255, 255, 0.7); /* Adjust color and transparency */
+            border-radius: 50%;
+            pointer-events: none; /* Ensure the tail doesn't interfere with mouse events */
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Animation for fading and shrinking */
+            transform-origin: center;
+        }
+
+        /* 联系表单区域 */
+        .contact-section {
+            padding: calc(var(--spacing-unit) * 4);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-left: 475px;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            background: #fff;
+            color: #3E2723;
+            font-size: 14px;
+            transition: all var(--transition-duration) ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all var(--transition-duration) ease;
+            margin-left: 240px;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 社交媒体区域 */
+        .social-section {
+            padding: calc(var(--spacing-unit) * 4);
+            background-color: #fdf6e3;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-duration) ease;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .social-link:hover {
+            transform: rotate(15deg);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu {
+                height: auto;
+                padding: var(--spacing-unit);
+            }
+            
+            .menu a {
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <div class="site-name">
+            芦佳佳
+            <span class="custom-tooltip">您好！欢迎来到我的主页</span>
+        </div>
+        <a href="#home">首页</a>
+        <a href="#portfolio">作品集</a>
+        <a href="#contact">联系方式</a>
+    </nav>
+
+    <div class="header-image" id="home">
+        <div class="avatar-wrapper">
+            <div class="avatar-frame"></div>
+            <img class="avatar-img" src="images/work06.jpg" alt="头像">
+        </div>
+    </div>
+
+    <div class="greeting-text">
+        Hi,我是芦佳佳
+    </div>
+
+    <div class="banner-text">
+        用设计打破边界，让灵感照进现实
+    </div>
+
+    <div class="contact-prompt">
+        即刻联系：
+    </div>
+
+    <div class="email-address">
+        邮箱：3496996360@qq.com
+    </div>
+
+    <div class="wechat-id">
+        电话号码：18813145113
+    </div>
+
+    <section class="portfolio-section" id="portfolio">
+        <div class="category-buttons">
+            <button class="category-btn">作品展示</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <a href="mastergo_design1.html">
+                    <img src="images/work01.jpg" alt="作品1">
+                </a>
+                <div class="portfolio-overlay">
+                    <span class="overlay-text">包装设计</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <a href="mastergo_design2.html">
+                    <img src="images/work16.jpg" alt="作品2" style="margin-top: -2px;">
+                </a>
+                <div class="portfolio-overlay">
+                    <span class="overlay-text">文创设计</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <a href="mastergo_design4.html"><img src="images/work18.jpg" alt="作品3"></a>
+                <div class="portfolio-overlay">
+                    <span class="overlay-text">产品摄影</span>
+                </div>
+            </div>
+            <div class="portfolio-item" style="position: relative; left: 1px; top: 0px;">
+                <a href="mastergo_design3.html">
+                    <video controls width="100%" height="300">
+                        <source src="images/videos/work08.mp4" type="video/mp4">
+                        您的浏览器不支持 video 标签。
+                    </video>
+                    <div class="portfolio-overlay">
+                        <span class="overlay-text">视听作品</span>
+                    </div>
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="generated_mastergo_design.html">
+                <video controls width="100%" height="300">
+                    <source src="images/videos/兔爷动态海报2.mp4" type="video/mp4">
+                    您的浏览器不支持 video 标签。
+                </video>
+                <div class="portfolio-overlay">
+                    <span class="overlay-text">动态海报</span>
+                </div>
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="project_detail_失亲疗愈动画.html">
+                    <video controls width="100%" height="300">
+                        <source src="images/videos/亲情疗愈动画.mp4" type="video/mp4">
+                        您的浏览器不支持 video 标签。
+                    </video>
+                    <div class="portfolio-overlay">
+                        <span class="overlay-text">视听作品</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-form">
+            <div class="form-group">
+                <input type="text" placeholder="您的姓名" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="您的邮箱" required>
+            </div>
+            <div class="form-group">
+                <textarea rows="5" placeholder="请描述您的需求" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">发送消息</button>
+        </div>
+    </section>
+
+    <section class="social-section">
+        <div class="social-links">
+            <a href="#" class="social-link" title="微信">
+                <i class="fab fa-weixin"></i>
+            </a>
+            <a href="#" class="social-link" title="微博">
+                <i class="fab fa-weibo"></i>
+            </a>
+            <a href="#" class="social-link" title="Behance">
+                <i class="fab fa-behance"></i>
+            </a>
+            <a href="#" class="social-link" title="Dribbble">
+                <i class="fab fa-dribbble"></i>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.querySelector('.header-image');
+
+            if (banner) {
+                banner.addEventListener('mousemove', function(e) {
+                    // Create a tail element
+                    const tail = document.createElement('div');
+                    tail.classList.add('mouse-tail'); // Add a class for styling
+
+                    // Get banner position for relative positioning
+                    const bannerRect = banner.getBoundingClientRect();
+                    // Calculate position relative to the banner container
+                    const x = e.clientX - bannerRect.left;
+                    const y = e.clientY - bannerRect.top;
+
+                    // Position the tail element
+                    tail.style.left = x + 'px';
+                    tail.style.top = y + 'px';
+
+                    // Append to the banner
+                    banner.appendChild(tail);
+
+                    // Trigger fade out and shrink animation
+                    requestAnimationFrame(() => {
+                         requestAnimationFrame(() => {
+                            tail.style.opacity = '0';
+                            tail.style.transform = 'scale(0)';
+                         });
+                    });
+
+
+                    // Remove the element after the transition
+                    tail.addEventListener('transitionend', () => {
+                        tail.remove();
+                    }, { once: true }); // Remove listener after it runs once
+                });
+            }
+        });
+    </script>
+</body>
+</html>
