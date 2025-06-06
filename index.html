@@ -118,7 +118,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            height: 600px;
+            height: 850px;
             background: url('https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/image_generation/eccdf8c573aadd06e328d8851ab0c00f_1741676810548865596.jpeg~tplv-a9rns2rl98-image.jpeg?rk3s=25bff839&x-expires=1773212810&x-signature=2IFyOmdqAXYpcj9n%2F8KfWze%2BW6c%3D') center/cover;
             position: relative;
             display: flex;
@@ -139,8 +139,8 @@
         .avatar-wrapper {
             position: absolute;
             left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            top: calc(50% - 80px); /* 向上移动80像素 */
+            transform: translate(-50%, calc(-50% - 70px));
             margin: 0 auto;
             display: flex;
             justify-content: center;
@@ -185,13 +185,21 @@
         .contact-prompt,
         .email-address,
         .wechat-id {
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            width: 100vw;
+            position: static;
+            text-align: left;
+            width: auto;
             max-width: 1200px;
-            position: relative;
-            margin: 0 auto;
+            margin: 0;
+        }
+
+        /* 新增：包裹这些文字的容器，flex纵向居中 */
+        .intro-center-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: -310px; /* 恢复为-310px，保证作品展示显示 */
         }
 
         .greeting-text {
@@ -291,7 +299,7 @@
             width: 100vw;
             padding: var(--spacing-unit);
             text-align: center;
-            margin-top: 40px; /* Add some space below the header */
+            margin-top: 45px; /* 向下移动5px */
         }
 
         .portfolio-section h2 {
@@ -545,6 +553,7 @@
             .avatar-wrapper {
                 width: 180px;
                 height: 180px;
+                transform: translate(-50%, calc(-50% - 70px));
             }
             .avatar-img {
                 width: 160px;
@@ -556,6 +565,13 @@
             .email-address,
             .wechat-id {
                 font-size: 20px;
+                text-align: left;
+            }
+            .header-image {
+                height: 1100px;
+            }
+            .intro-center-container {
+                margin-top: -60px;
             }
         }
 
@@ -566,6 +582,7 @@
             .avatar-wrapper {
                 width: 120px;
                 height: 120px;
+                transform: translate(-50%, calc(-50% - 70px));
             }
             .avatar-img {
                 width: 100px;
@@ -577,6 +594,7 @@
             .email-address,
             .wechat-id {
                 font-size: 16px;
+                text-align: left;
             }
             .menu {
                 flex-direction: column;
@@ -585,6 +603,12 @@
             }
             .menu a {
                 margin: 5px;
+            }
+            .header-image {
+                height: 1200px;
+            }
+            .intro-center-container {
+                margin-top: -40px;
             }
         }
     </style>
@@ -607,24 +631,26 @@
         </div>
     </div>
 
-    <div class="greeting-text">
-        Hi,我是芦佳佳
-    </div>
+    <div class="intro-center-container">
+        <div class="greeting-text">
+            Hi,我是芦佳佳
+        </div>
 
-    <div class="banner-text">
-        用设计打破边界，让灵感照进现实
-    </div>
+        <div class="banner-text">
+            用设计打破边界，让灵感照进现实
+        </div>
 
-    <div class="contact-prompt">
-        即刻联系：
-    </div>
+        <div class="contact-prompt">
+            即刻联系：
+        </div>
 
-    <div class="email-address">
-        邮箱：3496996360@qq.com
-    </div>
+        <div class="email-address">
+            邮箱：3496996360@qq.com
+        </div>
 
-    <div class="wechat-id">
-        电话号码：18813145113
+        <div class="wechat-id">
+            电话号码：18813145113
+        </div>
     </div>
 
     <section class="portfolio-section" id="portfolio">
