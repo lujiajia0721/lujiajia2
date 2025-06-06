@@ -5,87 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasterGo Design</title>
     <style>
-        :root {
-            --paint-1-3: #FFFFFF;
-            --paint-1-09: #333333;
-            --font-1-17-family: "Source Han Sans";
-            --font-1-17-size: 24px;
-            --font-1-17-weight: bold;
-            --font-1-07-family: "Source Han Sans";
-            --font-1-07-size: 55px;
-            --font-1-07-weight: bold;
-            --font-1-22-family: "Source Han Sans";
-            --font-1-22-size: 26px;
-            --font-1-22-weight: bold;
-        }
-
-        body {
+        body, html {
+            height: 100%;
             margin: 0;
             padding: 0;
-            background-color: var(--paint-1-3);
-            overflow-x: hidden;
+            background: #FFFFFF;
+            font-family: "Source Han Sans", "Microsoft YaHei", sans-serif;
         }
-
-        .frame-1-0 {
-            position: relative;
-            width: 1440px;
-            height: 1024px;
-            background-color: var(--paint-1-3);
+        .center-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px;
+            width: 90vw;
+            background: rgba(255,255,255,0.85);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px 20px;
+        }
+        .category {
+            font-size: 1.1rem;
+            color: #333333;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .title {
+            font-size: 2.2rem;
+            color: #333333;
+            font-weight: bold;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .desc {
+            font-size: 1.1rem;
+            color: #333333;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .video-wrapper {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 32px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
         }
-
-        .text-1-14 {
-            position: absolute;
-            height: 38px;
-            left: 127px;
-            top: 14px;
-            font-family: var(--font-1-17-family);
-            font-size: var(--font-1-17-size);
-            font-weight: var(--font-1-17-weight);
-            color: var(--paint-1-09);
-            text-align: left;
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
         }
-
-        .text-1-04 {
-            position: absolute;
-            width: 495px;
-            height: 80px;
-            left: 573px;
-            top: 52px;
-            font-family: var(--font-1-07-family);
-            font-size: var(--font-1-07-size);
-            font-weight: var(--font-1-07-weight);
-            color: var(--paint-1-09);
-            text-align: left;
+        .date {
+            font-size: 1rem;
+            color: #333333;
+            margin-bottom: 8px;
+            text-align: center;
         }
-
-        .text-1-19 {
-            position: absolute;
-            width: 1084px;
-            height: 340px;
-            left: 278px;
-            top: 132px;
-            font-family: var(--font-1-22-family);
-            font-size: var(--font-1-22-size);
-            font-weight: var(--font-1-22-weight);
-            color: var(--paint-1-09);
-            text-align: left;
+        @media (max-width: 768px) {
+            .content {
+                padding: 18px 6px;
+            }
+            .video-wrapper {
+                max-width: 95vw;
+                margin-bottom: 18px;
+            }
+            .title {
+                font-size: 1.3rem;
+            }
+            .desc {
+                font-size: 0.95rem;
+            }
         }
-
+        @media (max-width: 480px) {
+            .content {
+                padding: 8px 2px;
+            }
+            .video-wrapper {
+                max-width: 100vw;
+                margin-bottom: 10px;
+            }
+            .title, .desc, .category, .date {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="frame-1-0">
-        <div class="text-1-14">作品集——动态海报</div>
-        <h1 class="text-1-04">北京兔儿爷动态海报</h1>
-        <p class="text-1-19">本动态海报以 "北京兔儿爷" 为核心主题，深度融合北京传统民俗文化符号兔儿爷。在文化元素选取上，兔儿爷作为老北京极具代表性的民俗吉祥物，承载着祈福纳祥的美好愿景。其憨态可掬的形象、色彩绚丽的服饰，不仅是民间艺术的瑰宝，更寄托着人们对幸福生活的向往。本次设计精准提炼兔儿爷的经典造型特征，如长长的耳朵、威风的坐骑等，将其作为海报视觉主体，以此彰显北京传统文化的独特魅力。同时，"福禄双全" 四字与兔儿爷形象相互呼应，直接点明主题，传递出对观看者事业顺遂、生活美满的诚挚祝福。视觉设计层面，整体色调以中国传统色为基础，大胆运用红、黄、蓝、绿等鲜明色彩。红色象征热情与喜庆，黄色寓意富贵与吉祥，蓝色和绿色则增添灵动与生机，使海报充满视觉冲击力，完美契合传统民俗文化的热烈氛围。兔儿爷的头部、耳朵、手臂等部位进行轻微摆动，动作自然流畅，仿佛赋予其生命，使其从静态的民俗形象变为灵动鲜活的文化使者。</div>
-    </div>
-    <div style="position: relative; top: -480px; left: 590px;">
-        <video controls width="450">
-            <source src="images/videos/兔爷动态海报2.mp4" type="video/mp4">
-            您的浏览器不支持 video 标签。
-        </video>
-        <p style="font-family: var(--font-1-22-family); font-size: var(--font-1-22-size); font-weight: var(--font-1-22-weight); color: var(--paint-1-09);">创作时间：2025年4月</p>
+    <div class="center-container">
+        <div class="content">
+            <div class="category">作品集——动态海报</div>
+            <h1 class="title">北京兔儿爷动态海报</h1>
+            <p class="desc">本动态海报以 "北京兔儿爷" 为核心主题，深度融合北京传统民俗文化符号兔儿爷。在文化元素选取上，兔儿爷作为老北京极具代表性的民俗吉祥物，承载着祈福纳祥的美好愿景。其憨态可掬的形象、色彩绚丽的服饰，不仅是民间艺术的瑰宝，更寄托着人们对幸福生活的向往。本次设计精准提炼兔儿爷的经典造型特征，如长长的耳朵、威风的坐骑等，将其作为海报视觉主体，以此彰显北京传统文化的独特魅力。同时，"福禄双全" 四字与兔儿爷形象相互呼应，直接点明主题，传递出对观看者事业顺遂、生活美满的诚挚祝福。视觉设计层面，整体色调以中国传统色为基础，大胆运用红、黄、蓝、绿等鲜明色彩。红色象征热情与喜庆，黄色寓意富贵与吉祥，蓝色和绿色则增添灵动与生机，使海报充满视觉冲击力，完美契合传统民俗文化的热烈氛围。兔儿爷的头部、耳朵、手臂等部位进行轻微摆动，动作自然流畅，仿佛赋予其生命，使其从静态的民俗形象变为灵动鲜活的文化使者。</p>
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="images/videos/兔爷动态海报2.mp4" type="video/mp4">
+                    您的浏览器不支持 video 标签。
+                </video>
+            </div>
+            <div class="date">创作时间：2025年4月</div>
+        </div>
     </div>
 </body>
 </html> 
