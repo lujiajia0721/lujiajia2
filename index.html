@@ -205,25 +205,25 @@
         .greeting-text {
             top: calc(50% + 86px); /* Position above the banner text */
             color: white;
-            font-size: 30px; /* Adjust font size as needed */
+            font-size: 36px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             z-index: 10;
             transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
         }
 
         .greeting-text:hover {
-            font-size: 32px; /* Slightly larger font size */
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); /* Orange to light orange gradient */
-            -webkit-background-clip: text; /* Clip the background to the text */
-            background-clip: text; /* Standard property */
-            -webkit-text-fill-color: transparent; /* Make the text color transparent */
-            color: transparent; /* Fallback for browsers that don't support -webkit-text-fill-color */
+            font-size: 38px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
         .banner-text {
             top: calc(50% + 141px); /* Adjust position below the avatar */
             color: white;
-            font-size: 36px;
+            font-size: 28px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             z-index: 10;
             transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
@@ -241,7 +241,7 @@
         .contact-prompt {
             top: calc(50% + 201px); /* Adjust position below the banner text */
             color: white;
-            font-size: 36px;
+            font-size: 28px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             z-index: 10;
             transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
@@ -259,7 +259,7 @@
         .email-address {
             top: calc(50% + 253px); /* Position below the contact prompt */
             color: white;
-            font-size: 30px; /* Adjust font size as needed */
+            font-size: 28px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             z-index: 10;
             transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
@@ -277,7 +277,7 @@
         .wechat-id {
             top: calc(50% + 306px); /* Position below the email address */
             color: white;
-            font-size: 30px; /* Adjust font size as needed */
+            font-size: 28px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             z-index: 10;
             transition: font-size 0.3s ease, background-color 0.3s ease; /* Add transition for smooth effect */
@@ -371,6 +371,7 @@
             color: var(--text-color);
             cursor: pointer;
             transition: all var(--transition-duration) ease;
+            margin-top: 8px;
         }
 
         .category-btn:hover {
@@ -786,6 +787,39 @@
                     }, { once: true }); // Remove listener after it runs once
                 });
             }
+
+            // 平滑滚动到#home
+            document.querySelectorAll('a[href="#home"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = document.getElementById('home');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // 平滑滚动到#portfolio
+            document.querySelectorAll('a[href="#portfolio"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = document.getElementById('portfolio');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // 平滑滚动到#contact
+            document.querySelectorAll('a[href="#contact"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = document.getElementById('contact');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
         });
     </script>
 </body>
